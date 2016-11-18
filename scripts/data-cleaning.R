@@ -6,15 +6,48 @@ scorecard13_14 <- read.csv('../data/MERGED2013_14_PP.csv')
 
 scorecard14_15 <- read.csv('../data/MERGED2014_15_PP.csv')
 
-columns <- c(scorecard12_13$INSTNM, "INSTNM", "CITY", "STABBR", 
-             "ZIP", "HIGHDEG", "CONTROL", "TUITFTE", "SATVR25",
-             "SATVR75","SATWR25", "SATWR75", "SATMT25", "SATMT75",
-             "ACTEN25", "ACTEN75", "ACTWR25", "ACTWR75", "ACTMT25",
-             "ACTMT75", "COSTT4_A", "NPT4_PUB", "NPT4_PRIV", "NPT4_PROG",
-             "UGDS", "UGDS_MEN", "UGDS_WOMEN", "UGDS_WHITE", "UGDS_BLACK",
-             "UGDS_HISP", "UGDS_ASIAN", "UGDS_AIAN", "UGDS_NHPI", "UGDS_2MOR",
-             "UGDS_NRA", "UGDS_UNKN", "MARRIED", "DEPENDENT", "VETERAN",
-             "FIRST_GEN", "PCTFLOAN", "PCTPELL")
+columns <- c(grep("C150_L4", names(scorecard12_13)), 
+             grep("MN_EARN_", names(scorecard12_13)), grep("GT_25K_", names(scorecard12_13)),
+             grep("CIP", names(scorecard12_13)))
+
+col_names <- c("INSTNM", "CITY", "STABBR", 
+               "ZIP", "HIGHDEG", "CONTROL", "TUITFTE", "SATVR25",
+               "SATVR75","SATWR25", "SATWR75", "SATMT25", "SATMT75",
+               "ACTEN25", "ACTEN75", "ACTWR25", "ACTWR75", "ACTMT25",
+               "ACTMT75", "COSTT4_A", "NPT4_PUB", "NPT4_PRIV", "NPT4_PROG",
+               "UGDS", "UGDS_MEN", "UGDS_WOMEN", "UGDS_WHITE", "UGDS_BLACK",
+               "UGDS_HISP", "UGDS_ASIAN", "UGDS_AIAN", "UGDS_NHPI", "UGDS_2MOR",
+               "UGDS_NRA", "UGDS_UNKN", "MARRIED", "DEPENDENT", "VETERAN",
+               "FIRST_GEN", "PCTFLOAN", "PCTPELL", "COSTT4_A", "COSTT4_P",
+               "C100_4", "C150_4", "C100_L4")
+
+scorecard12_13_final <- cbind(scorecard12_13[,col_names], scorecard12_13[,columns])
+scorecard13_14_final <- cbind(scorecard13_14[,col_names], scorecard13_14[,columns])
+scorecard14_15_final <- cbind(scorecard14_15[,col_names], scorecard14_15[,columns])
+
+for(i in 1:nrow(scorecard12_13_final)){
+  for(j in 1:ncol(scorecard12_13_final)){
+    if(scorecard12_13_final[i, j] == "NULL" | scorecard12_13_final[i,j] == "PrivacySuppressed"){
+      scorecard12_13_final[i,j] <- NA
+    }
+  }
+}
+
+for(i in 1:nrow(scorecard13_14_final)){
+  for(j in 1:ncol(scorecard13_14_final)){
+    if(scorecard13_14_final[i, j] == "NULL" | scorecard13_14_final[i,j] == "PrivacySuppressed"){
+      scorecard13_14_final[i,j] <- NA
+    }
+  }
+}
+
+for(i in 1:nrow(scorecard14_15_final)){
+  for(j in 1:ncol(scorecard14_15_final)){
+    if(scorecard14_15_final[i, j] == "NULL" | scorecard14_15_final[i,j] == "PrivacySuppressed"){
+      scorecard14_15_final[i,j] <- NA
+    }
+  }
+}
 
 # select variables:
 #- average net price (NPT4)
