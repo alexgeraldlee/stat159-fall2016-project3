@@ -25,6 +25,7 @@ scorecard12_13_final <- cbind(scorecard12_13[,col_names], scorecard12_13[,column
 scorecard13_14_final <- cbind(scorecard13_14[,col_names], scorecard13_14[,columns])
 scorecard14_15_final <- cbind(scorecard14_15[,col_names], scorecard14_15[,columns])
 
+#SCORECARD12-13
 for(i in 1:nrow(scorecard12_13_final)){
   for(j in 1:ncol(scorecard12_13_final)){
     if(scorecard12_13_final[i, j] == "NULL" | scorecard12_13_final[i,j] == "PrivacySuppressed"){
@@ -33,6 +34,20 @@ for(i in 1:nrow(scorecard12_13_final)){
   }
 }
 
+for(i in 1:4){
+  scorecard12_13[,i] <- as.character(scorecard12_13_final[,i])
+}
+scorecard12_13_final$HIGHDEG <- as.factor(scorecard12_13_final$HIGHDEG)
+scorecard12_13_final$CONTROL <- as.factor(scorecard12_13_final$CONTROL)
+for(i in 7:317){
+  scorecard12_13_final[,i] <- as.numeric(as.character(scorecard12_13_final[,i]))
+}
+
+
+scaled12_13 <- scale(scorecard12_13_final[7:317], center = T, scale = T)
+scorecard12_13_final <- cbind(scorecard12_13_final[1:7], scaled12_13)
+
+#SCORECARD13-14
 for(i in 1:nrow(scorecard13_14_final)){
   for(j in 1:ncol(scorecard13_14_final)){
     if(scorecard13_14_final[i, j] == "NULL" | scorecard13_14_final[i,j] == "PrivacySuppressed"){
@@ -41,6 +56,19 @@ for(i in 1:nrow(scorecard13_14_final)){
   }
 }
 
+for(i in 1:4){
+  scorecard13_14[,i] <- as.character(scorecard13_14_final[,i])
+}
+scorecard13_14_final$HIGHDEG <- as.factor(scorecard13_14_final$HIGHDEG)
+scorecard13_14_final$CONTROL <- as.factor(scorecard13_14_final$CONTROL)
+for(i in 7:317){
+  scorecard13_14_final[,i] <- as.numeric(as.character(scorecard13_14_final[,i]))
+}
+
+scaled13_14 <- scale(scorecard13_14_final[7:317], center = T, scale = T)
+scorecard13_14_final <- cbind(scorecard13_14_final[1:7], scaled13_14)
+
+#SCORECARD14-15
 for(i in 1:nrow(scorecard14_15_final)){
   for(j in 1:ncol(scorecard14_15_final)){
     if(scorecard14_15_final[i, j] == "NULL" | scorecard14_15_final[i,j] == "PrivacySuppressed"){
@@ -48,6 +76,38 @@ for(i in 1:nrow(scorecard14_15_final)){
     }
   }
 }
+
+for(i in 1:4){
+  scorecard14_15[,i] <- as.character(scorecard14_15_final[,i])
+}
+scorecard14_15_final$HIGHDEG <- as.factor(scorecard14_15_final$HIGHDEG)
+scorecard14_15_final$CONTROL <- as.factor(scorecard14_15_final$CONTROL)
+for(i in 7:317){
+  scorecard14_15_final[,i] <- as.numeric(as.character(scorecard14_15_final[,i]))
+}
+
+scaled14_15 <- scale(scorecard14_15_final[7:317], center = T, scale = T)
+scorecard14_15_final <- cbind(scorecard14_15_final[1:7], scaled14_15)
+
+
+
+write.csv(scaled12_13, file = '../data/final-12-13.csv')
+write.csv(scaled13_14, file = '../data/final-13-14.csv')
+write.csv(scaled14_15, file = '../data/final-14-15.csv')
+
+
+
+
+
+#This is used to dummify variables.
+#Replace C100_4 with any of the C1X variables
+
+temp <- model.matrix(C100_4 ~ ., data = scorecard12_13_final)
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# Variable Selections
+
 
 # select variables:
 #- average net price (NPT4)
@@ -68,3 +128,5 @@ for(i in 1:nrow(scorecard14_15_final)){
 #   - >$25000 - median wage of workers 25-34 with only a high school degree
 #- PREDDEG - type of degree institution primarily awards
 
+
+#graduation rate and earnings after graduation
