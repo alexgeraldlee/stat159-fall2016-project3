@@ -29,11 +29,11 @@ sink()
 #Boxplots
 
 for (i in 1:(ncol(scorecard))) {
-pdf(paste("images/boxplots/", names(scorecard[i]), "_boxplot.pdf", sep=""))
-boxplot(scorecard[,i],
+  pdf(paste("images/boxplots/", names(scorecard[i]), "_boxplot.pdf", sep=""))
+  boxplot(scorecard[,i],
         main=paste(names(scorecard[i]), "Boxplot", sep= " "),
         ylab= paste(names(scorecard[i])))
-dev.off()
+  dev.off()
 }
 
 #Histograms
