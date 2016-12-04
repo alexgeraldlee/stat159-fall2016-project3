@@ -1,0 +1,93 @@
+\documentclass{article}
+\usepackage{graphicx}
+\graphicspath{ {/Users/AustinCarango/stat159/stat159-fall2016-project3/images/} }
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\section{Analysis}
+
+In this section we show the processes used in each of the four regression methods by displaying the code used. Diagnostic/validation plots are also displayed for each regression.
+
+\subsection{OLS}
+
+<<eval=FALSE>>=
+set.seed(159)
+
+edu = read.csv('../data/final.csv', stringsAsFactors = FALSE)
+edu = edu[, -c(1)]
+
+ols = lm(Earning~., data = edu)
+ols_summary = summary(ols)
+
+save(ols, file = '../data/ols.RData')
+@
+
+\includegraphics{ols.pdf}
+
+\subsection{PLSR}
+
+<<eval=FALSE>>=
+
+library(pls)
+
+set.seed(159)
+
+plsr = plsr(Earning~., data = edu, validation ="CV", scale = FALSE,standardize = FALSE)
+
+plsr_coef = plsr$coefficients[,1,which.min(plsr$validation$PRESS)]
+plsr_coef
+
+save(plsr, file = '../data/plsr.RData')
+
+@
+
+\includegraphics{plsr.pdf}
+
+\subsection{Lasso}
+
+<<eval=FALSE>>=
+
+library(glmnet)
+
+edu = read.csv('../data/final.csv', stringsAsFactors = FALSE)
+edu = edu[, -c(1)]
+
+grid = 10^seq(10, -2, length=100)
+
+set.seed(159)
+
+lasso = cv.glmnet(as.matrix(edu[,c(1:33)]), as.matrix(edu[,34]), intercept = FALSE,
+                   standardize = FALSE, lambda = grid, alpha = 1)
+
+save(lasso, file = '../data/lasso.RData')
+
+@
+
+\includegraphics{lasso.pdf}
+
+\subsection{Random Forest}
+
+<<eval=FALSE>>=
+
+library(caret)
+
+edu = read.csv('../data/final.csv', stringsAsFactors = FALSE)
+edu = edu[, -c(1)]
+
+train_index = sample(1:1636, 1336)
+
+train = edu[train_index,]
+test = edu[-train_index,]
+
+fitControl = trainControl(method = "repeatedcv", number = 10)
+model.rf = train(Earning ~ ., data = train, method = 'rf', trControl = fitControl)
+
+importance(model.rf$finalModel)
+
+save(model.rf, file = '../data/randomforest.RData')
+
+@
+
+\includegraphics{randomforest.pdf}
+
+\end{document}
