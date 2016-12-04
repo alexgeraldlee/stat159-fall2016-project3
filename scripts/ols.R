@@ -6,4 +6,4 @@ edu = edu[, -c(1)]
 ols = lm(Earning~., data = edu)
 ols_summary = summary(ols)
 
-save(ols_summary, file = '../data/ols.RData')
+save(ols, file = '../data/ols.RData')
