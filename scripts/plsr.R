@@ -13,7 +13,7 @@ plsr_coef
 save(plsr, file = '../data/plsr.RData')
 
 #plot
-pdf("~/stat159/stat159-fall2016-project3/images/plsr.pdf")
+pdf("../images/plsr.pdf")
 par(mfrow=c(1,1))
 plot(plsr)
 dev.off()
