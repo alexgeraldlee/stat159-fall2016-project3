@@ -1,1 +1,57 @@
+Session info --------------------------------------------
+ setting  value                       
+ version  R version 3.2.3 (2015-12-10)
+ system   x86_64, darwin13.4.0        
+ ui       RStudio (0.99.879)          
+ language (EN)                        
+ collate  en_US.UTF-8                 
+ tz       America/Los_Angeles         
+ date     2016-12-04                  
 
+Packages ------------------------------------------------
+ package      * version date       source        
+ car            2.1-1   2015-12-14 CRAN (R 3.2.3)
+ caret        * 6.0-73  2016-11-10 CRAN (R 3.2.5)
+ codetools      0.2-14  2015-07-15 CRAN (R 3.2.3)
+ colorspace     1.2-6   2015-03-11 CRAN (R 3.2.0)
+ devtools       1.10.0  2016-01-23 CRAN (R 3.2.3)
+ digest         0.6.9   2016-01-08 CRAN (R 3.2.3)
+ foreach      * 1.4.3   2015-10-13 CRAN (R 3.2.0)
+ ggplot2      * 2.0.0   2015-12-18 CRAN (R 3.2.3)
+ glmnet       * 2.0-5   2016-03-17 CRAN (R 3.2.4)
+ gtable         0.1.2   2012-12-05 CRAN (R 3.2.0)
+ iterators      1.0.8   2015-10-13 CRAN (R 3.2.0)
+ lattice      * 0.20-33 2015-07-14 CRAN (R 3.2.3)
+ lme4           1.1-10  2015-10-06 CRAN (R 3.2.2)
+ magrittr       1.5     2014-11-22 CRAN (R 3.2.0)
+ MASS           7.3-45  2015-11-10 CRAN (R 3.2.3)
+ Matrix       * 1.2-3   2015-11-28 CRAN (R 3.2.3)
+ MatrixModels   0.4-1   2015-08-22 CRAN (R 3.2.0)
+ memoise        0.2.1   2014-04-22 CRAN (R 3.2.0)
+ mgcv           1.8-9   2015-10-30 CRAN (R 3.2.3)
+ minqa          1.2.4   2014-10-09 CRAN (R 3.2.0)
+ ModelMetrics   1.1.0   2016-08-26 CRAN (R 3.2.5)
+ munsell        0.4.2   2013-07-11 CRAN (R 3.2.0)
+ nlme           3.1-122 2015-08-19 CRAN (R 3.2.3)
+ nloptr         1.0.4   2014-08-04 CRAN (R 3.2.0)
+ nnet           7.3-11  2015-08-30 CRAN (R 3.2.3)
+ pbkrtest       0.4-5   2016-01-20 CRAN (R 3.2.3)
+ pls          * 2.5-0   2015-08-22 CRAN (R 3.2.0)
+ plyr           1.8.3   2015-06-12 CRAN (R 3.2.0)
+ quantreg       5.19    2015-08-31 CRAN (R 3.2.0)
+ Rcpp           0.12.3  2016-01-10 CRAN (R 3.2.3)
+ reshape2       1.4.1   2014-12-06 CRAN (R 3.2.0)
+ rstudioapi     0.5     2016-01-24 CRAN (R 3.2.3)
+ scales         0.3.0   2015-08-25 CRAN (R 3.2.0)
+ SparseM        1.7     2015-08-15 CRAN (R 3.2.0)
+ stringi        1.0-1   2015-10-22 CRAN (R 3.2.0)
+ stringr        1.0.0   2015-04-30 CRAN (R 3.2.0)
+ 
+ 
+git version 2.5.4 (Apple Git-61)
+ 
+pdfTeX 3.14159265-2.6-1.40.17 (TeX Live 2016)
+
+pandoc 1.17.2
+ 
+GNU Make 3.81
