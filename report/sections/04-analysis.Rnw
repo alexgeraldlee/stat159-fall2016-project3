@@ -1,6 +1,6 @@
 \documentclass{article}
 \usepackage{graphicx}
-\graphicspath{ {/Users/AustinCarango/stat159/stat159-fall2016-project3/images/} }
+\graphicspath{ {../../images/} }
 \begin{document}
 \SweaveOpts{concordance=TRUE}
 

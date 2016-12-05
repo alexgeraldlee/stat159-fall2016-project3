@@ -1,0 +1,11 @@
+\documentclass{article}
+\usepackage{graphicx}
+\graphicspath{ {../../images/} }
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\section{Analysis}
+
+
+
+\end{document}
