@@ -1,5 +1,9 @@
 library(pls)
 
+#read data
+edu = read.csv('data/final.csv', stringsAsFactors = FALSE)
+edu = edu[, -c(1)]
+
 set.seed(159)
 
 #fit model
@@ -13,7 +17,7 @@ plsr_coef
 save(plsr, file = '../data/plsr.RData')
 
 #plot
-pdf("../images/plsr.pdf")
+pdf("images/plsr.pdf")
 par(mfrow=c(1,1))
 plot(plsr)
 dev.off()
