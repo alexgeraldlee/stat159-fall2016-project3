@@ -15,7 +15,7 @@ lasso = cv.glmnet(as.matrix(edu[,c(1:32)]), as.matrix(edu[,33]), intercept = FAL
 lasso$glmnet.fit$beta[,which(lasso$lambda == lasso$lambda.min)]
 
 #save data
-save(lasso, file = '../data/lasso.RData')
+save(lasso, file = 'data/lasso.RData')
 
 #plot
 pdf("images/lasso.pdf")
