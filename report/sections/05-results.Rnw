@@ -4,8 +4,40 @@
 \begin{document}
 \SweaveOpts{concordance=TRUE}
 
-\section{Analysis}
+\section{Results}
 
+\subsection{OLS}
 
+<<xtable, results=tex>>=
+load('../../data/ols.RData')
+ols_coef <- data.frame(summary(ols)$coefficients)
+ols_coef <- ols_coef[ols_coef$Pr...t.. <= .05,]
+ols_summary <- summary(ols)
+
+ols_mse <- ols_summary$sigma
+
+library(xtable)
+xtable(ols_coef[,c(1,4)])
+@
+
+From these results we can see that the primary predictors of earning are SAT and ACT scores. Other significant variables are tuition, annual cost of attendance, the average net price of attendance, the number of undergraduates, dependence, the borrowing rate, and reception of a Pell grant.
+
+\subsection{PLSR}
+
+<<xtable, results=tex>>=
+load('../../data/plsr.RData')
+plsr_coef <- plsr$coefficients[,1,which.min(plsr$validation$PRESS)]
+plsr_coef <- data.frame('variable' = names(plsr_coef),'coefficient' = plsr_coef)
+rownames(plsr_coef) <- c()
+library(xtable)
+xtable(plsr_coef)
+@
+
+\subsection{lasso}
+
+<<xtable, results=tex>>=
+load('../../data/lasso.RData')
+lasso_
+@
 
 \end{document}
