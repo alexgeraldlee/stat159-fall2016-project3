@@ -38,12 +38,20 @@ The coefficients of the PLSR model with the lowest lambda value. Of particular n
 \subsection{lasso}
 
 <<xtable, results=tex, echo=FALSE>>=
-# load('../../data/lasso.RData')
-# lasso_best <- lasso$glmnet.fit$beta[,which(lasso$lambda == lasso$lambda.min)]
-# lasso_best <- data.frame('variable' = names(lasso_best), 'coefficient' = lasso_best)
-# rownames(lasso_best) <- c()
-# library(xtable)
-# xtable(lasso_best)
+library(glmnet)
+edu = read.csv('../../data/final.csv', stringsAsFactors = FALSE)
+edu = edu[, -c(1)]
+
+grid = 10^seq(10, -2, length=100)
+
+set.seed(159)
+lasso = cv.glmnet(as.matrix(edu[,c(1:32)]), as.matrix(edu[,33]), intercept = FALSE, standardize = FALSE, lambda = grid, alpha = 1)
+
+lasso_best <- lasso$glmnet.fit$beta[,which(lasso$lambda == lasso$lambda.min)]
+lasso_best <- data.frame('variable' = names(lasso_best), 'coefficient' = lasso_best)
+rownames(lasso_best) <- c()
+library(xtable)
+xtable(lasso_best, caption = "Lasso Coefficients")
 @
 
 The coefficients of the lasso regression model. The highest is the number of Asian undergraduates and the lowest is the number of students receiving a Pell grant.
