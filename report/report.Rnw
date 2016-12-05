@@ -1,7 +1,7 @@
 \documentclass{article}
 \usepackage{graphicx}
 \usepackage{hyperref}
-\graphicspath{ {../images/} }
+\graphicspath{ {images/} }
 \title{Project 3 Stat 159}
 \author{Austin Carango, Youngshin Kim, Alexander Lee, Mandy Zhang}
 \begin{document}
