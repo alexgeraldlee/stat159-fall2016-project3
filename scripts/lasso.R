@@ -1,7 +1,7 @@
 library(glmnet)  
 
 #read data
-edu = read.csv('../data/final.csv', stringsAsFactors = FALSE)
+edu = read.csv('data/final.csv', stringsAsFactors = FALSE)
 edu = edu[, -c(1)]
 
 grid = 10^seq(10, -2, length=100)
@@ -18,6 +18,6 @@ lasso$glmnet.fit$beta[,which(lasso$lambda == lasso$lambda.min)]
 save(lasso, file = '../data/lasso.RData')
 
 #plot
-pdf("../images/lasso.pdf")
+pdf("images/lasso.pdf")
 plot(lasso)
 dev.off()
