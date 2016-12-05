@@ -3,7 +3,7 @@
 \subsection{OLS}
 
 <<xtable, results=tex, echo=FALSE>>=
-load('../data/ols.RData')
+load('data/ols.RData')
 ols_coef <- data.frame(summary(ols)$coefficients)
 ols_coef <- ols_coef[ols_coef$Pr...t.. <= .05,]
 ols_summary <- summary(ols)
@@ -19,7 +19,7 @@ From these results we can see that the primary predictors of earning are SAT and
 \subsection{PLSR}
 
 <<xtable, results=tex, echo=FALSE>>=
-load('../data/plsr.RData')
+load('data/plsr.RData')
 plsr_coef <- plsr$coefficients[,1,which.min(plsr$validation$PRESS)]
 plsr_coef <- data.frame('variable' = names(plsr_coef),'coefficient' = plsr_coef)
 rownames(plsr_coef) <- c()
@@ -33,7 +33,7 @@ The coefficients of the PLSR model with the lowest lambda value. Of particular n
 
 <<xtable, results=tex, echo=FALSE>>=
 library(glmnet)
-edu = read.csv('../data/final.csv', stringsAsFactors = FALSE)
+edu = read.csv('data/final.csv', stringsAsFactors = FALSE)
 edu = edu[, -c(1)]
 
 grid = 10^seq(10, -2, length=100)
@@ -54,7 +54,7 @@ The coefficients of the lasso regression model. The highest is the number of Asi
 
 <<xtable, results=tex, echo=FALSE>>=
 library(randomForest)
-load('../data/randomforest.RData')
+load('data/randomforest.RData')
 rf_importance <- importance(model.rf$finalModel)
 rf_importance <- data.frame('variable' = rownames(rf_importance), 'IncNodePurity' = rf_importance)
 rownames(rf_importance) <- c()
