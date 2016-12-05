@@ -14,7 +14,7 @@ plsr_coef = plsr$coefficients[,1,which.min(plsr$validation$PRESS)]
 plsr_coef
 
 #save data
-save(plsr, file = '../data/plsr.RData')
+save(plsr, file = 'data/plsr.RData')
 
 #plot
 pdf("images/plsr.pdf")
