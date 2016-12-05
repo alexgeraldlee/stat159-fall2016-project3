@@ -29,7 +29,10 @@ regression:
 	make plsr
 
 report: report/report.Rnw
-	R CMD Sweave --pdf report/report.Rnw; rm report/report.aux report/report.log report/report.tex report/report.out report/report-concordance.tex
+	R CMD Sweave --pdf report/report.Rnw;
+	rm report.aux report.log report.tex report.out report-concordance.tex;
+	mv report.pdf report/
+	
 
 slides: slides/slides.Rmd
 	Rscript -e 'rmarkdown::render("slides/slides.Rmd")'
