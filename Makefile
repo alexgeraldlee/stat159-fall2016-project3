@@ -8,7 +8,7 @@ preproc: scripts
 	Rscript -e 'source("scripts/data_cleaning.R")'
 
 ols:
-	Rscript -e 'source("scripts/ols-regression.R")'
+	Rscript -e 'source("scripts/ols.R")'
 
 plsr: 
 	Rscript -e 'source("code/scripts/plsr.R")'
