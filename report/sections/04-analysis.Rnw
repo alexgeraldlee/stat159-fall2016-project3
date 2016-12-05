@@ -1,9 +1,3 @@
-\documentclass{article}
-\usepackage{graphicx}
-\graphicspath{ {../../images/} }
-\begin{document}
-\SweaveOpts{concordance=TRUE}
-
 \section{Analysis}
 
 In this section we show the processes used in each of the four regression methods by displaying the code used. Diagnostic/validation plots are also displayed for each regression.
@@ -89,5 +83,3 @@ save(model.rf, file = '../data/randomforest.RData')
 @
 
 \includegraphics{randomforest.pdf}
-
-\end{document}

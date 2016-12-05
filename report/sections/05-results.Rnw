@@ -1,15 +1,9 @@
-\documentclass{article}
-\usepackage{graphicx}
-\graphicspath{ {../../images/} }
-\begin{document}
-\SweaveOpts{concordance=TRUE}
-
 \section{Results}
 
 \subsection{OLS}
 
 <<xtable, results=tex, echo=FALSE>>=
-load('../../data/ols.RData')
+load('stat159/stat159-fall2016-project3/data/ols.RData')
 ols_coef <- data.frame(summary(ols)$coefficients)
 ols_coef <- ols_coef[ols_coef$Pr...t.. <= .05,]
 ols_summary <- summary(ols)
@@ -25,7 +19,7 @@ From these results we can see that the primary predictors of earning are SAT and
 \subsection{PLSR}
 
 <<xtable, results=tex, echo=FALSE>>=
-load('../../data/plsr.RData')
+load('stat159/stat159-fall2016-project3/data/plsr.RData')
 plsr_coef <- plsr$coefficients[,1,which.min(plsr$validation$PRESS)]
 plsr_coef <- data.frame('variable' = names(plsr_coef),'coefficient' = plsr_coef)
 rownames(plsr_coef) <- c()
@@ -39,7 +33,7 @@ The coefficients of the PLSR model with the lowest lambda value. Of particular n
 
 <<xtable, results=tex, echo=FALSE>>=
 library(glmnet)
-edu = read.csv('../../data/final.csv', stringsAsFactors = FALSE)
+edu = read.csv('stat159/stat159-fall2016-project3/data/final.csv', stringsAsFactors = FALSE)
 edu = edu[, -c(1)]
 
 grid = 10^seq(10, -2, length=100)
@@ -60,7 +54,7 @@ The coefficients of the lasso regression model. The highest is the number of Asi
 
 <<xtable, results=tex, echo=FALSE>>=
 library(randomForest)
-load('../../data/randomforest.RData')
+load('stat159/stat159-fall2016-project3/data/randomforest.RData')
 rf_importance <- importance(model.rf$finalModel)
 rf_importance <- data.frame('variable' = rownames(rf_importance), 'IncNodePurity' = rf_importance)
 rownames(rf_importance) <- c()
@@ -69,5 +63,3 @@ xtable(rf_importance[rf_importance$IncNodePurity > 4,], caption = "Relevant Vari
 @
 
 The variables with a higher IncNodePurity value were the significant ones, which had more of an effect predicting the earnings of a student. These variables are tuition, race (being white or Asian), and receiving a loan in college.
-
-\end{document}

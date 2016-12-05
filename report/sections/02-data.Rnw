@@ -1,39 +1,32 @@
-\documentclass{article}
-
-\begin{document}
-\SweaveOpts{concordance=TRUE}
-
-\section{Introduction}
+\section{Data}
 
 The dataset used in this project is called Most-Recent-Cohorts-All-Data-Elements.csv, and can be found at \url{https://collegescorecard.ed.gov/data/}. This particular subset contains only the most recent data, which we are interested in because we want to predict future outcomes. The raw data contains 7703 observations of 1743 variables, each observation being a college.
 
 Before performing analysis of any kind this data was cleaned and scaled. This involved first picking out only private colleges from the data and selecting a subset of variables of interest. Then, rows and columns for which there were an abundance of NA values were deleted. Then, any remaining NA values were imputed with column means. Finally, the data was mean centered and standardized. This resulted in the dataset we will analyze, final.csv.
 
-This file contains 34 variables. The response variable is called Earning, renamed from MN_EARN_WNE_P10, and indicates the mean earnings of federally aided students 10 years after enrolling. We take this to be a good indicator of competitiveness, as high mean earnings after graduation are desirable. The 33 explanatory variables are as follows:
+This file contains 34 variables. The response variable is called Earning, renamed from MN\_EARN\_WNE\_P10, and indicates the mean earnings of federally aided students 10 years after enrolling. We take this to be a good indicator of competitiveness, as high mean earnings after graduation are desirable. The 33 explanatory variables are as follows:
 
-\textbullet HIGHDEG is the highest level of degree awarded by the institution, in descending order of graduate degree/certificate, bachelor's, associate's, and certificate.
+\textbullet\ HIGHDEG is the highest level of degree awarded by the institution, in descending order of graduate degree/certificate, bachelor's, associate's, and certificate.
 
-\textbullet TUITFTE is the net tuition revenue per full-time student
+\textbullet\ TUITFTE is the net tuition revenue per full-time student
 
-\textbullet SATVR25/75, SATMT25/75, ACTEN25/75, and ACTMT25/75 are the 25th and 75th percentile scores for enrolled students in the English and math sections of the SAT and ACT.
+\textbullet\ SATVR25/75, SATMT25/75, ACTEN25/75, and ACTMT25/75 are the 25th and 75th percentile scores for enrolled students in the English and math sections of the SAT and ACT.
 
-\textbullet COSTT4_A is the average cost of attendance, tuition and fees
+\textbullet\ COSTT4\_A is the average cost of attendance, tuition and fees
 
-\textbullet NPT4_PRIV is the average net price of attending.
+\textbullet\ NPT4\_PRIV is the average net price of attending.
 
-\textbullet UGDS is the number of undergraduates enrolled in the fall.
+\textbullet\ UGDS is the number of undergraduates enrolled in the fall.
 
-\textbullet UGDS_WHITE, UGDS_BLACK, UGDS_HISP, UGDS_ASIAN, UGDS_AIAN, UGDS_NHPI, UGDS_2MOR, UGDS_NRA, UGDS_UNKN, respectively indicate the number of white, black, Hispanic, Asian, American Indian/Alaska Native, Native Hawaiian/Pacific Islander, bi or multiracial, non-resident alien, and unknown race students.
+\textbullet\ UGDS\_WHITE, UGDS\_BLACK, UGDS\_HISP, UGDS\_ASIAN, UGDS\_AIAN, UGDS\_NHPI, UGDS\_2MOR, UGDS\_NRA, UGDS\_UNKN, respectively indicate the number of white, black, Hispanic, Asian, American Indian/Alaska Native, Native Hawaiian/Pacific Islander, bi or multiracial, non-resident alien, and unknown race students.
 
-\textbullet MARRIED, DEPENDENT and FIRST_GEN indicate the share of married, dependent and first generation students.
+\textbullet\ MARRIED, DEPENDENT and FIRST\_GEN indicate the share of married, dependent and first generation students.
 
-\textbullet PCTFLOAN indicates the share of students who recieved federal loans.
+\textbullet\ PCTFLOAN indicates the share of students who recieved federal loans.
 
-\textbullet PCTPELL indicates the share of students who recieved Pell Grants.
+\textbullet\ PCTPELL indicates the share of students who recieved Pell Grants.
 
-\textbullet C100_4 and C150_4 are the graduation rates for full-time, first-time students within 100 or 150 percent of expected completion time.
+\textbullet\ C100\_4 and C150\_4 are the graduation rates for full-time, first-time students within 100 or 150 percent of expected completion time.
 
-\textbullet GT_25K_P10 is the fraction of students earning over 25 thousand dollars per year 10 years after enrolling.
+\textbullet\ GT\_25K\_P10 is the fraction of students earning over 25 thousand dollars per year 10 years after enrolling.
 
-
-\end{document}
