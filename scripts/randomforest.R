@@ -4,6 +4,8 @@ library(caret)
 edu = read.csv('../data/final.csv', stringsAsFactors = FALSE)
 edu = edu[, -c(1)]
 
+set.seed(159)
+
 #create train/test data
 train_index = sample(1:1636, 1336)
 
