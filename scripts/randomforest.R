@@ -1,7 +1,7 @@
 library(caret)
 
 #read in data
-edu = read.csv('../data/final.csv', stringsAsFactors = FALSE)
+edu = read.csv('data/final.csv', stringsAsFactors = FALSE)
 edu = edu[, -c(1)]
 
 set.seed(159)
@@ -19,9 +19,9 @@ model.rf = train(Earning ~ ., data = train, method = 'rf', trControl = fitContro
 importance(model.rf$finalModel)
 
 #save data
-save(model.rf, file = '../data/randomforest.RData')
+save(model.rf, file = 'data/randomforest.RData')
 
 #plot
-pdf("../images/randomforest.pdf")
+pdf("images/randomforest.pdf")
 plot(model.rf)
 dev.off()
