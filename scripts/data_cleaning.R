@@ -61,4 +61,4 @@ edu = scale(edu, center = TRUE, scale = TRUE)
 edu = as.data.frame(edu) 
 
 #exporting cleaned data
-write.csv(edu, file = "../data/final.csv")
+write.csv(edu, file = "data/final.csv")
