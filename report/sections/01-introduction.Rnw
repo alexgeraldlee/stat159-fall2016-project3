@@ -1,0 +1,15 @@
+\documentclass{article}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\section{Introduction}
+
+Given the College Scorecard data, which contains a variety of information including academics, demographics, cost, and earnings for thousands of colleges in America, how can a group of administrators increase the competitiveness of their school?
+
+To answer this, we look at 4 different regression methods, including OLS, PLSR, LASSO and Random Tree. Each of these methods will be individually discussed and applied to the College Scorecard data. Then, each model will be compared and recommondations for the administrators will be given based off the results of the regressions.
+
+We will attempt to model earnings of graduates as a function of 33 other variables, which will be discussed in detail in the next section. 
+
+
+\end{document}
