@@ -8,22 +8,19 @@
 \SweaveOpts{concordance=TRUE}
 \maketitle
 
-
 \SweaveInput{sections/00-abstract.Rnw}
-
 
 \SweaveInput{sections/01-introduction.Rnw}
 
 \SweaveInput{sections/02-data.Rnw}
 
-\SweaveInput{stat159/stat159-fall2016-project3/report/sections/03-methods.Rnw}
+\SweaveInput{sections/03-methods.Rnw}
 
 \SweaveInput{sections/04-analysis.Rnw}
 
-
 \SweaveInput{sections/05-results.Rnw}
-
 
 \SweaveInput{sections/06-conclusion.Rnw}
 
 \end{document}
+
