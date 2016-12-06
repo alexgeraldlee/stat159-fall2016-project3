@@ -7,12 +7,7 @@
 #    http://shiny.rstudio.com/
 #
 
-library(shiny)
-
 library(RColorBrewer)
-
-
-
 
 
 library(shiny)
@@ -29,7 +24,6 @@ shinyUI(fluidPage(
       selectInput("model", "select prediction", c("lasso", "plsr", "ols", "randomForest"))
     ),
   
-      
       
      # Show a plot of the generated distribution
     mainPanel(

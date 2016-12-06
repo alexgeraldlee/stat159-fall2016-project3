@@ -11,10 +11,6 @@ library(shiny)
 # Define server logic required to draw a histogram
 shinyServer(
   function(input, output) {
-    #filteredData1 <- reactive(load("../../data/lasso.RData"))
-    #filteredData2 <- reactive(load("../../data/ols.RData"))
-    #filteredData3 <- reactive(laod("../../data/plsr.RData"))
-    #filteredData4 <- reactive(load("../../data/randomforest.RData"))
     output$title = renderUI({
       h1(input$model, align="center")
     })
