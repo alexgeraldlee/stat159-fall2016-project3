@@ -1,4 +1,4 @@
-hinyapps
+#shinyapp
 
 This fodler contains the ui.R and server.R for the shiny app to produce tables, graphs and summary based on four different models from dataset in `data/`folder.
 
