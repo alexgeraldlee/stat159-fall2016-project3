@@ -1,7 +1,7 @@
-.PHONY: all eda regression report clean 
+.PHONY: all eda regression report clean ols plsr lasso randomforest preproc
 
 # all	
-all: eda regression report preproc ols plsr lasso randomforest 
+all: preproc eda regression report
 
 # Runs data prprocessing script
 preproc: scripts
