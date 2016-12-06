@@ -33,11 +33,15 @@ shinyUI(fluidPage(
       
      # Show a plot of the generated distribution
     mainPanel(
+      h5("Authors: Xinyu Zhang, Alexander Lee, Youngshin Kim, Austin Carango"),
       uiOutput("title"),
-      uiOutput("image"),
-      uiOutput("table"),
-      uiOutput("summary")
+      tabsetPanel(
+        tabPanel("plot", uiOutput("image")),
+        tabPanel("table", uiOutput("table")),
+        tabPanel("summary", uiOutput("summary"))
+      )
     )
+    
   )
 ))
 

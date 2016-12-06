@@ -16,7 +16,7 @@ shinyServer(
     #filteredData3 <- reactive(laod("../../data/plsr.RData"))
     #filteredData4 <- reactive(load("../../data/randomforest.RData"))
     output$title = renderUI({
-      h3(input$model, align="center")
+      h1(input$model, align="center")
     })
     
     output$image = renderUI({
