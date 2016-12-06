@@ -32,15 +32,14 @@ report: report/report.Rnw
 	R CMD Sweave --pdf report/report.Rnw;
 	rm report.aux report.log report.tex report.out report-concordance.tex;
 	mv report.pdf report/
-	
 
-slides: slides/slides.Rmd
-	Rscript -e 'rmarkdown::render("slides/slides.Rmd")'
+slide:
+	Rscript -e "library(rmarkdown); library("xtable"); render('slides/slides.Rmd', 'ioslides_presentation')"
 
 shinyapp:
 	cp data/* shiny/stat159-project3/data/
-	cp image/* shiny/stat159-project3/image/ 
-	Rscript -e "library(methods); shiny::runApp("shinyApp/app.R", launch.browser=TRUE)"
+	cp images/*.png shiny/stat159-project3/www/ 
+	Rscript -e "library(methods); shiny::runApp(appDir='shiny/stat159-project3', launch.browser=TRUE)"
 
 clean:
 	rm -f report/report.pdf
