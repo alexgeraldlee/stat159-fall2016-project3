@@ -1,0 +1,130 @@
+---
+title: "STAT159 final project"
+author: Alexander Lee, Youngshin Kim, Austin Carango, Xinyu Zhang
+output: ioslides_presentation
+---
+## prompt
+This project is a consulting project for the following client:
+    
+A group of administrators trying to make their school more competitive, wanting to compare themselves to similar schools in demographics and population centers, in terms of diversity, and graduation rates.
+
+## Abstract
+
+The goal of this project is to create a predictive modeling process for the College Scorecard dataset from the perspective of a consultant whose client is a group of administrators trying to make their school more competetive. The data contains information pertaining to the "cost and value of institutions accross the country" and can be found at \url{https://collegescorecard.ed.gov/data/}.
+
+
+
+
+## Introduction
+
+
+Given the College Scorecard data, which contains a variety of information including academics, demographics, cost, and earnings for thousands of colleges in America, how can a group of administrators increase the competitiveness of their school?
+
+To answer this, we look at 4 different regression methods, including OLS, PLSR, LASSO and Random Tree. Each of these methods will be individually discussed and applied to the College Scorecard data. Then, each model will be compared and recommondations for the administrators will be given based off the results of the regressions.
+
+We will attempt to model earnings of graduates as a function of 33 other variables, which will be discussed in detail in the next section. 
+
+## About the data
+The dataset used in this project is called Most-Recent-Cohorts-All-Data-Elements.csv, and can be found at \url{https://collegescorecard.ed.gov/data/}. This particular subset contains only the most recent data, which we are interested in because we want to predict future outcomes. The raw data contains 7703 observations of 1743 variables, each observation being a college.
+
+## Data (cont.)
+Before performing analysis of any kind this data was cleaned and scaled. This involved first picking out only private colleges from the data and selecting a subset of variables of interest. Then, rows and columns for which there were an abundance of NA values were deleted. Then, any remaining NA values were imputed with column means. Finally, the data was mean centered and standardized. This resulted in the dataset we will analyze, final.csv.
+
+## Data (cont.)
+This file contains 34 variables. The response variable is called Earning, renamed from MN\_EARN\_WNE\_P10, and indicates the mean earnings of federally aided students 10 years after enrolling. We take this to be a good indicator of competitiveness, as high mean earnings after graduation are desirable.
+
+
+## Methods 
+
+We analyze the data using four regression methods: original least squares (OLS), partial least squares (PLSR), lasso, and random forest. The OLS method simply creates a linear model based on our 34 predictive variables which minimizes the residual sum of squares. PLSR is a dimension reduction method, which is useful when variables are correlated with each other; since it is unknown if our varaibles are correlated, we run a PLSR to generate a model and compare it to the others. Lasso is a shrinkage method, aiming to find a model with the smallest lambda. 
+
+## Methods (cont.)
+
+The random forest method makes predictions using regression trees, which split the data into smaller and smaller subsets such that the residual sum of squares is reduced; the random forest model builds trees based on bootstrapped training samples, which decorrelates the trees, making them more reliable. This is done via the "caret" package, which simplifies regression training.
+
+## Analysis & Results
+
+In this section we show the processes used in each of the four regression methods by displaying the code used. Diagnostic/validation plots are also displayed for each regression.
+
+  * OLS
+  * PLSR
+  * lasso
+  * randomForest
+
+## OLS
+```{r, echo=FALSE,results = 'asis', warning=FALSE, comment= FALSE, message=FALSE}
+load('../data/ols.RData')
+ols_coef <- data.frame(summary(ols)$coefficients)
+ols_coef <- ols_coef[ols_coef$Pr...t.. <= .05,]
+ols_summary <- summary(ols)
+
+ols_mse <- ols_summary$sigma
+
+library(xtable)
+print(xtable(ols_coef[,c(1,4)], caption = "OLS Significant Coefficients"), comment = FALSE, type = "html")
+```
+
+## OLS (cont.)
+
+From these results we can see that the primary predictors of earning are SAT and ACT scores. Other significant variables are tuition, annual cost of attendance, the average net price of attendance, the number of undergraduates, dependence, the borrowing rate, and reception of a Pell grant.
+
+## PLSR 
+```{r, xtable2, echo=FALSE,results = 'asis', warning=FALSE, comment= FALSE, message=FALSE}
+load('../data/plsr.RData')
+plsr_coef <- plsr$coefficients[,1,which.min(plsr$validation$PRESS)]
+plsr_coef <- data.frame('variable' = names(plsr_coef),'coefficient' = plsr_coef)
+rownames(plsr_coef) <- c()
+library(xtable)
+print(xtable(plsr_coef, caption = "PLSR Coefficients"), comment = FALSE, type = "html")
+```
+
+## PLSR (cont.)
+The coefficients of the PLSR model with the lowest lambda value. Of particular note are the number of Asian undergraduates (the highest value) and the number of students receiving a Pell grant (the lowest value).
+
+## LASSO 
+```{r, xtable3, echo=FALSE,results = 'asis', warning=FALSE, comment= FALSE, message=FALSE}
+library(glmnet)
+edu = read.csv('../data/final.csv', stringsAsFactors = FALSE)
+edu = edu[, -c(1)]
+
+grid = 10^seq(10, -2, length=100)
+
+set.seed(159)
+lasso = cv.glmnet(as.matrix(edu[,c(1:32)]), as.matrix(edu[,33]), intercept = FALSE, standardize = FALSE, lambda = grid, alpha = 1)
+
+lasso_best <- lasso$glmnet.fit$beta[,which(lasso$lambda == lasso$lambda.min)]
+lasso_best <- data.frame('variable' = names(lasso_best), 'coefficient' = lasso_best)
+rownames(lasso_best) <- c()
+library(xtable)
+print(xtable(lasso_best, caption = "Lasso Coefficients"), comment = FALSE, type = "html")
+```
+
+The coefficients of the lasso regression model. The highest is the number of Asian undergraduates and the lowest is the number of students receiving a Pell grant.
+
+## RandomForest
+```{r, xtable4, echo=FALSE,results = 'asis', warning=FALSE, comment= FALSE, message=FALSE}
+library(randomForest)
+load('../data/randomforest.RData')
+rf_importance <- importance(model.rf$finalModel)
+rf_importance <- data.frame('variable' = rownames(rf_importance), 'IncNodePurity' = rf_importance)
+rownames(rf_importance) <- c()
+library(xtable)
+print(xtable(rf_importance[rf_importance$IncNodePurity > 4,], caption = "Relevant Variables from Random Forest"), comment = FALSE, type = "html")
+```
+
+## RandomForest
+
+The variables with a higher IncNodePurity value were the significant ones, which had more of an effect predicting the earnings of a student. These variables are tuition, race (being white or Asian), and receiving a loan in college.
+
+
+## Conlusion
+The models above tend to agree that tuition, SAT/ACT scores, total cost of attendance, the racial composition of the undergraduate classes, taking out a loan, and receiving a Pell grant. However, these variables may not be useful in the context of making changes to the campus's administration to increase competitiveness. To begin with, the fact that tuition predicts eventual earnings is clear: schools that require higher tuition levels are typically better schools academically, and thus it would be clear that attending a school with a higher tuition would lead to finding a higher-paying job in the future. 
+
+## Conlusion (cont.)
+It is not the case that increasing tuition at your college would necessarily lead to an increase in competitiveness. There is a similar argument for the cost of attendance, as tuition is included in that cost, and for taking out a loan, as students at universities that have higher tuition would typically have to take out loans in order to pay the amount. Of interest is the negative correlation between earnings later and receiving a Pell grant in college: the models agree that having a Pell grant predicts lower earnings later in life. 
+
+
+
+
+
+
