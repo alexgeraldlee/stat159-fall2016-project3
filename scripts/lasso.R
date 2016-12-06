@@ -19,5 +19,6 @@ save(lasso, file = 'data/lasso.RData')
 
 #plot
 pdf("images/lasso.pdf")
+png("images/lasso.png")
 plot(lasso)
 dev.off()

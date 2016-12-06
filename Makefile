@@ -11,10 +11,10 @@ ols:
 	Rscript -e 'source("scripts/ols.R")'
 
 plsr: 
-	Rscript -e 'source("code/scripts/plsr.R")'
+	Rscript -e 'source("scripts/plsr.R")'
 
 lasso:
-	Rscript -e 'source("code/scripts/lasso.R")'
+	Rscript -e 'source("scripts/lasso.R")'
 
 randomforest:
 	Rscript -e 'source("scripts/randomforest.R")'
@@ -32,10 +32,14 @@ report: report/report.Rnw
 	R CMD Sweave --pdf report/report.Rnw;
 	rm report.aux report.log report.tex report.out report-concordance.tex;
 	mv report.pdf report/
-	
 
-slides: slides/slides.Rmd
-	Rscript -e 'rmarkdown::render("slides/slides.Rmd")'
+slide:
+	Rscript -e "library(rmarkdown); library("xtable"); render('slides/slides.Rmd', 'ioslides_presentation')"
+
+shinyapp:
+	cp data/* shiny/stat159-project3/data/
+	cp images/*.png shiny/stat159-project3/www/ 
+	Rscript -e "library(methods); shiny::runApp(appDir='shiny/stat159-project3', launch.browser=TRUE)"
 
 clean:
 	rm -f report/report.pdf

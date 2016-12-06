@@ -18,6 +18,7 @@ save(plsr, file = 'data/plsr.RData')
 
 #plot
 pdf("images/plsr.pdf")
+png("images/plsr.png")
 par(mfrow=c(1,1))
 plot(plsr)
 dev.off()

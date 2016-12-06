@@ -1,5 +1,6 @@
 #Project 3
-##Alexander Lee, Mandy Zhang, Youngshin Kim, Austin Carango
+
+##Alexander Lee, Xinyu Zhang, Youngshin Kim, Austin Carango
 
 This project is a consulting project for the following client:
 
@@ -14,6 +15,8 @@ Project structure is as follows:
 * `report/` contains `report.Rnw` the raw sweave file for the report and `report.pdf`, the final report itself, in addition to `sections/` which contains child documents for the sections of the report.
 
 * `scripts/` contains `.R` files for eda, data-cleaning, and each regression.
+
+* `Shiny/` contains two copied folder (data&images) as well as server.r and ui.r
 
 * Files contained in the root directory include the Makefile, gitignore, license, and session info.
 
@@ -32,5 +35,7 @@ Phony targets for the makefile include:
 * `randomforest` which runs the random forest regression script
 * `preproc` which runs the data-cleaning/centering/standardizing script
 
-All media is licensed under CC Atribution 4.0 International. All code is licenced under MIT. See `license.Rmd` for details.
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>. 
+
+All code is licenced under MIT. See `license.Rmd` for details.
 

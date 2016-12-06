@@ -25,3 +25,7 @@ save(model.rf, file = 'data/randomforest.RData')
 pdf("images/randomforest.pdf")
 plot(model.rf)
 dev.off()
+
+png("images/randomforest.png")
+plot(model.rf)
+dev.off()
