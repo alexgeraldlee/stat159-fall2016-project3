@@ -11,10 +11,10 @@ ols:
 	Rscript -e 'source("scripts/ols.R")'
 
 plsr: 
-	Rscript -e 'source("code/scripts/plsr.R")'
+	Rscript -e 'source("scripts/plsr.R")'
 
 lasso:
-	Rscript -e 'source("code/scripts/lasso.R")'
+	Rscript -e 'source("scripts/lasso.R")'
 
 randomforest:
 	Rscript -e 'source("scripts/randomforest.R")'
@@ -36,6 +36,11 @@ report: report/report.Rnw
 
 slides: slides/slides.Rmd
 	Rscript -e 'rmarkdown::render("slides/slides.Rmd")'
+
+shinyapp:
+	cp data/* shiny/stat159-project3/data/
+	cp image/* shiny/stat159-project3/image/ 
+	Rscript -e "library(methods); shiny::runApp("shinyApp/app.R", launch.browser=TRUE)"
 
 clean:
 	rm -f report/report.pdf

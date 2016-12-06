@@ -13,6 +13,7 @@ save(ols, file = 'data/ols.RData')
 
 #plot
 pdf("images/ols.pdf")
+png("images/ols.png")
 par(mfrow=c(2,2))
 plot(ols)
 dev.off()
