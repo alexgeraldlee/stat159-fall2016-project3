@@ -20,7 +20,7 @@ Project structure is as follows:
 
 * Files contained in the root directory include the Makefile, gitignore, license, and session info.
 
-To reproduce this project simply run the command `make all` from the root directory.
+To reproduce this project simply run the command `make all` from the root directory this will produce the images, .Rdata files, eda.txt, and report.pdf. Running `make shinyapp` runs the shiny app, and running `make slides` renders the slides. Running these three commands will fully reporduce the deliverables of the project.
 
 Phony targets for the makefile include:
 
@@ -34,6 +34,8 @@ Phony targets for the makefile include:
 * `lasso` which runs the lasso regression script
 * `randomforest` which runs the random forest regression script
 * `preproc` which runs the data-cleaning/centering/standardizing script
+* `shinyapp` which runs the shiny app
+* `slide` which renders the slides
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>. 
 
