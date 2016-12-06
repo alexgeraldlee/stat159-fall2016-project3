@@ -1,4 +1,4 @@
-.PHONY: all eda regression report clean ols plsr lasso randomforest preproc
+.PHONY: all eda regression report clean ols plsr lasso randomforest preproc shinyapp slide
 
 # all	
 all: preproc eda regression report
